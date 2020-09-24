@@ -90,7 +90,6 @@ epel-release-7-11.noarch
 Python 2.7.5
 
 [root@DooM3 ~]# rpm -qa | grep pip
-libpipeline-1.2.3-3.el7.x86_64
 
 [root@DooM3 ~]# yum install python-pip
 Loaded plugins: fastestmirror
@@ -184,7 +183,6 @@ Complete!
 
 [root@DooM3 ~]# rpm -qa | grep pip
 python2-pip-8.1.2-14.el7.noarch
-libpipeline-1.2.3-3.el7.x86_64
 ```
 
 <br><br>
