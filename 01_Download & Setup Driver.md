@@ -4,7 +4,7 @@
 
 ###### Install all following packages as "root" user
 
-Extra Packages for Enterprise Linux (EPEL) are required : verify and install : <br><br>
+Extra Packages for Enterprise Linux (EPEL) are required : verify and install :
 ```
 rpm -qa | grep epel
 yum install epel-release
@@ -20,8 +20,9 @@ yum install python-pip
 
 <br><br>
 
-DataStax python cassandra-driver : install :
+DataStax python cassandra-driver : verify and install :
 ```
+pip show cassandra-driver
 pip install cassandra-driver
 ```
 
