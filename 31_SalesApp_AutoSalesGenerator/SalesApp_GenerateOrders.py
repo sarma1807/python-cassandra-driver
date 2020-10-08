@@ -19,10 +19,10 @@ import string
 CASS_READ_CONSISTENCY  = ConsistencyLevel.LOCAL_QUORUM
 CASS_WRITE_CONSISTENCY = ConsistencyLevel.TWO
 
-### user is expected to generate 10000 users using SalesApp_GenerateUsers.py
+### user is expected to pre-generate 10000 users using SalesApp_GenerateUsers.py
 var_users_count    = 10000
 
-### user is expected to generate 50000 products using SalesApp_GenerateProducts.py
+### user is expected to pre-generate 50000 products using SalesApp_GenerateProducts.py
 var_products_count = 50000
 
 v_number_of_orders = 0
