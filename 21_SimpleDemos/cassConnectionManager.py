@@ -4,15 +4,14 @@
 ### import cassandra driver libraries/modules
 from cassandra.cluster import Cluster
 from cassandra.auth    import PlainTextAuthProvider
-from cassandra         import ConsistencyLevel
 from cassandra.query   import SimpleStatement
 
 ### connection variables
-CASS_CONTACT_POINTS = ["192.168.1.151", "192.168.1.171"] ;
-CASS_USERNAME = "thor" ;
-CASS_PASSWORD = "Complic4ted" ;
-CASS_KEYSPACE = "cassdemo" ;
-
+CASS_CONTACT_POINTS    = ["192.168.1.151", "192.168.1.171"] ;
+CASS_PORT              = 9042 ;
+CASS_USERNAME          = "thor" ;
+CASS_PASSWORD          = "Complic4ted" ;
+CASS_KEYSPACE          = "cassdemo" ;
 
 ### main class
 class cassConnect:
@@ -22,7 +21,7 @@ class cassConnect:
 
 		### prep for cassandra connection
 		cass_auth_provider = PlainTextAuthProvider(username = CASS_USERNAME, password = CASS_PASSWORD)
-		self.cass_cluster = Cluster(contact_points = CASS_CONTACT_POINTS, auth_provider = cass_auth_provider)
+		self.cass_cluster = Cluster(contact_points = CASS_CONTACT_POINTS, port = CASS_PORT, auth_provider = cass_auth_provider)
 
 		### connect to cassandra cluster and set default keyspace
 		self.cass_session = self.cass_cluster.connect(CASS_KEYSPACE)
