@@ -25,6 +25,8 @@ try:
 	### value for empid will be generated using random funtion
 	### value for first_name and last_name will be generated using uuid function
 	cc.cass_session.execute(cql_prepared_stmt_1, (random.randint(1111, 9999), str(uuid.uuid4()).replace('-', '')[1:11], str(uuid.uuid4()).replace('-', '')[1:11]))
+	print "---- 1 row inserted -----------------------------------"
+	print ""
 
 	### print header
 	print "---- select and print only 1 row ----------------------"
@@ -40,6 +42,7 @@ try:
 	cass_row_1 = cass_output_1[0]
 	print cass_row_1.first_name, "|", cass_row_1.last_name, "|", cass_row_1.empid
 	print "-------------------------------------------------------"
+	print ""
 
 	### print header
 	print "---- select and print 5 rows --------------------------"
@@ -52,6 +55,7 @@ try:
 	for cass_row in cass_output_1:
 		print cass_row.first_name, "|", cass_row.last_name, "|", cass_row.empid
 	print "-------------------------------------------------------"
+	print ""
 
 
 except Exception as e:
