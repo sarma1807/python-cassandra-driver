@@ -19,6 +19,12 @@ import string
 CASS_READ_CONSISTENCY  = ConsistencyLevel.LOCAL_QUORUM
 CASS_WRITE_CONSISTENCY = ConsistencyLevel.TWO
 
+### user is expected to generate 10000 users using SalesApp_GenerateUsers.py
+var_users_count    = 10000
+
+### user is expected to generate 50000 products using SalesApp_GenerateProducts.py
+var_products_count = 50000
+
 v_number_of_orders = 0
 
 
@@ -27,18 +33,6 @@ try:
 	cc = cassConnect()
 
 	### build a cql statements
-	cql_users_count = cc.cass_session.prepare("SELECT count(1) as users_count FROM users")
-	cql_users_count.consistency_level = CASS_READ_CONSISTENCY
-	cql_users_count_output = cc.cass_session.execute(cql_users_count)
-	cass_row = cql_users_count_output[0]
-	var_users_count = cass_row.users_count
-
-	cql_products_count = cc.cass_session.prepare("SELECT count(1) as products_count FROM products")
-	cql_products_count.consistency_level = CASS_READ_CONSISTENCY
-	cql_products_count_output = cc.cass_session.execute(cql_products_count)
-	cass_row = cql_products_count_output[0]
-	var_products_count = cass_row.products_count
-
 	cql_user_stmt = cc.cass_session.prepare("SELECT user_id, user_email_id, user_name, user_phone_number, user_platform, user_state_code FROM users WHERE user_id = ?")
 	cql_user_stmt.consistency_level = CASS_READ_CONSISTENCY
 	
