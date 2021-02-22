@@ -1,3 +1,9 @@
+#### Configure Cassandra Cluster Connection
+
+`cassConnectionManager.py` Python program to configure connection to Cassandra Cluster.
+
+---
+
 #### Apache Cassandra CQL Commands
 
 `01_cassandra_sales_keyspace.cql` Apache Cassandra CQL commands to create sales keyspace.
@@ -10,9 +16,9 @@
 
 #### SalesApp Python code written to use python cassandra-driver.
 
-`SalesApp_GenerateUsers.py` Generates Users. Typically executed only 1 time during initial setup.
+`SalesApp_GenerateUsers.py` Generates Users. Typically executed only 1 time during initial setup. Code will expect 10000 users be generated.
 
-`SalesApp_GenerateProducts.py` Generates Products. Typically executed only 1 time during initial setup.
+`SalesApp_GenerateProducts.py` Generates Products. Typically executed only 1 time during initial setup. Code will expect 50000 products be generated.
 
 `SalesApp_GenerateOrders.py` Generates Orders. Execute it whenever you want to generate Orders or automate the execution using cron.
 
