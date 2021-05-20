@@ -11,3 +11,5 @@ Python code provided here has been tested on `Python 2.7.5` and it is not compat
 Note : python cassandra-driver is compatible with `Apache Cassandra 2.1+ / DataStax Enterprise 4.7+ / Python 2.7 & 3.4+`
 
 ---
+
+#### https://www.youtube.com/watch?v=c34JLr5UNKE
