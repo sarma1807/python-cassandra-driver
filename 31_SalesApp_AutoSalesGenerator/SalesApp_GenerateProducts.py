@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# code written for and tested in Python 2.7.5
 
 ### import cassConnectionManager.py and other required libraries
 
@@ -60,13 +59,16 @@ try:
 
 		v_number_of_products = var_product_id
 
-except:
+except Exception as e:
 	### something went wrong
-	print "something went wrong."
+	print("something went wrong.")
+	print("")
+	print(e)
 else:
 	### all went well
-	print v_number_of_products, "products generated."
-	print "Done."
+	output_message = str(v_number_of_products) + " products generated."
+	print(output_message)
+	print("Done.")
 
 
 ### close connection to cassandra cluster

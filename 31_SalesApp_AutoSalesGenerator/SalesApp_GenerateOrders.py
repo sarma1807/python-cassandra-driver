@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# code written for and tested in Python 2.7.5
 
 ### import cassConnectionManager.py and other required libraries
 
@@ -27,6 +26,8 @@ var_products_count = 50000
 
 v_number_of_orders = 0
 
+### v_max_orders should be greater than 10
+v_max_orders = 500
 
 ### main logic
 try:
@@ -50,7 +51,7 @@ try:
 
 
 	### generate orders using for loop - start
-	for var_orders in range(1, random.randint(4, 22)):
+	for var_orders in range(1, random.randint(10, v_max_orders)):
 
 		### pick a user
 		cql_stmt              = cql_user_stmt.bind([random.randint(1, var_users_count)])
@@ -76,7 +77,7 @@ try:
 		var_order_total                         = 0
 
 		### generate order-products using for loop - start
-		for var_order_products in range(1, random.randint(2, 8)):
+		for var_order_products in range(1, random.randint(10, 20)):
 
 			### pick a product
 			cql_stmt                   = cql_product_stmt.bind([random.randint(1, var_products_count)])
@@ -110,13 +111,16 @@ try:
 	### generate orders using for loop - end
 
 
-except:
+except Exception as e:
 	### something went wrong
-	print var_order_timestamp, "| something went wrong."
+	output_message = str(var_order_timestamp) + " | something went wrong."
+	print(output_message)
+	# print(e)
 else:
 	### all went well
-	print var_order_timestamp, "|", v_number_of_orders, "orders generated."
-	# print "Done."
+	output_message = str(var_order_timestamp) + " | " + str(v_number_of_orders) + " orders generated."
+	print(output_message)
+	# print("Done.")
 
 
 ### close connection to cassandra cluster
