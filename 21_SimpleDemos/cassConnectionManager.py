@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# code written for and tested in Python 2.7.5
 
 ### import cassandra driver libraries/modules
 from cassandra.cluster import Cluster
