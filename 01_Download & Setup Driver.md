@@ -20,9 +20,10 @@ yum install python-pip
 
 <br><br>
 
-DataStax python cassandra-driver : verify and install :
+DataStax python cassandra-driver : verify/uninstall/install :
 ```
 pip show cassandra-driver
+pip uninstall cassandra-driver
 pip install cassandra-driver
 ```
 
