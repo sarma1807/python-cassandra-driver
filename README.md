@@ -1,4 +1,5 @@
 ## python cassandra-driver
+![CassPy.jpg](https://github.com/sarma1807/python-cassandra-driver/blob/master/CassPy.jpg) <br><br>
 
 ###### python cassandra-driver is built by DataStax and distributed via : https://pypi.org/project/cassandra-driver/
 
