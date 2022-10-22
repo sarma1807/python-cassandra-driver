@@ -4,11 +4,21 @@
 
 ---
 
-At the time of writing this post, I am using : `Apache Cassandra 3.11.10 & 4.0-beta4` & `python cassandra-driver 3.25.0`
+### Latest Verification
 
-Python code provided here has been tested on `Python 2.7.5` and `Python 3.6.8`
+```
+# 22-October-2022
+# this is working properly with following software versions :
 
-Note : python cassandra-driver is compatible with `Apache Cassandra 2.1+ / DataStax Enterprise 4.7+ / Python 2.7 & 3.4+`
+Linux OS : CentOS Linux release 7.9.2009 (Core) & CentOS Stream release 9 (5.14.0-171.el9.x86_64)
+Python version 3.6.8+
+python cassandra-driver 3.25.0
+Apache Cassandra 3.11.x / 4.x / including 4.1-beta1
+DataStax Enterprise 6.8.x
+AstraDB
+```
+
+## This code is NO LONGER compatible with Python version 2.x
 
 ---
 
