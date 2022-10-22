@@ -18,7 +18,7 @@ DataStax Enterprise 6.8.x
 AstraDB
 ```
 
-## This code is NO LONGER compatible with Python version 2.x
+### This code is NO LONGER compatible with Python version 2.x
 
 ---
 
