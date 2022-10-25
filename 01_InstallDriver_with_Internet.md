@@ -50,3 +50,5 @@ Required-by:
 
 ---
 
+#### further reading : https://docs.datastax.com/en/developer/python-driver/3.25/installation/
+
