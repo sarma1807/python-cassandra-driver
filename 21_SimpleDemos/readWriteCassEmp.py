@@ -35,10 +35,13 @@ try:
 	cql_prepared_stmt_3 = cql_prepared_stmt_2.bind([1001])
 	cql_prepared_stmt_3.consistency_level = CASS_READ_CONSISTENCY
 	cass_output_1 = cc.cass_session.execute(cql_prepared_stmt_3)
-	# cass_row_1 = cass_output_1[0]
-	cass_row_1 = cass_output_1.one()
-	output_message = cass_row_1.first_name + " | " + cass_row_1.last_name + " | " + str(cass_row_1.empid)
-	print(output_message)
+	if (len(cass_output_1._current_rows) > 0):
+		# cass_row_1 = cass_output_1[0]  ### index based row fetching is deprecated in Python 4.x
+		cass_row_1 = cass_output_1.one()
+		output_message = cass_row_1.first_name + " | " + cass_row_1.last_name + " | " + str(cass_row_1.empid)
+		print(output_message)
+	else:
+		print("ERROR: looking for empid=1001 and that row was not found in the database")
 	print("-------------------------------------------------------")
 	print("")
 
