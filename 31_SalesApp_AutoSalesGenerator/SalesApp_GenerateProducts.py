@@ -42,9 +42,12 @@ try:
 		cql_stmt        = cql_prdcat_stmt.bind([random.randint(1, 20)])
 		prdcat_output   = cc.cass_session.execute(cql_stmt)
 
-		# cass_row = prdcat_output[0]
-		cass_row = prdcat_output.one()
-		var_product_category = cass_row.product_category
+		if (len(prdcat_output._current_rows) > 0):
+			# cass_row = prdcat_output[0]  ### index based row fetching is deprecated in Python 4.x
+			cass_row = prdcat_output.one()
+			var_product_category = cass_row.product_category
+		else:
+			print("ERROR: looks like lookup data is missing in the database. use '03_load_data_in_lookup_tables.cql' to load lookup data.")
 
 		var_product_code = str(uuid.uuid4()).replace('-', '')[1:13]
 		var_product_name = str(uuid.uuid4()).replace('-', '')[1:random.randint(5, 9)] + ' ' + str(uuid.uuid4()).replace('-', '')[1:random.randint(5, 9)]

@@ -50,15 +50,26 @@ try:
 		cql_stmt        = cql_platform_stmt.bind([random.randint(1, 10)])
 		platform_output = cc.cass_session.execute(cql_stmt)
 
-		# cass_row = email_output[0]
-		cass_row = email_output.one()
-		var_email_server = cass_row.email_server
-		# cass_row = state_output[0]
-		cass_row = state_output.one()
-		var_state_code = cass_row.state_code
-		# cass_row = platform_output[0]
-		cass_row = platform_output.one()
-		var_platform = cass_row.platform
+		if (len(email_output._current_rows) > 0):
+			# cass_row = email_output[0]  ### index based row fetching is deprecated in Python 4.x
+			cass_row = email_output.one()
+			var_email_server = cass_row.email_server
+		else:
+			print("ERROR: looks like lookup data is missing in the database. use '03_load_data_in_lookup_tables.cql' to load lookup data.")
+
+		if (len(state_output._current_rows) > 0):
+			# cass_row = state_output[0]  ### index based row fetching is deprecated in Python 4.x
+			cass_row = state_output.one()
+			var_state_code = cass_row.state_code
+		else:
+			print("ERROR: looks like lookup data is missing in the database. use '03_load_data_in_lookup_tables.cql' to load lookup data.")
+
+		if (len(platform_output._current_rows) > 0):
+			# cass_row = platform_output[0]  ### index based row fetching is deprecated in Python 4.x
+			cass_row = platform_output.one()
+			var_platform = cass_row.platform
+		else:
+			print("ERROR: looks like lookup data is missing in the database. use '03_load_data_in_lookup_tables.cql' to load lookup data.")
 
 		var_user_name = str(uuid.uuid4()).replace('-', '')[1:13]
 		var_user_email_id = var_user_name + var_email_server

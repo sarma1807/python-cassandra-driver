@@ -50,15 +50,17 @@ try:
 		### pick a user
 		cql_stmt              = cql_user_stmt.bind([random.randint(1, var_users_count)])
 		user_output           = cc.cass_session.execute(cql_stmt)
-		# cass_row              = user_output[0]
-		cass_row              = user_output.one()
-		var_user_id           = cass_row.user_id
-		var_user_email_id     = cass_row.user_email_id
-		var_user_name         = cass_row.user_name
-		var_user_phone_number = cass_row.user_phone_number
-		var_user_platform     = cass_row.user_platform
-		var_user_state_code   = cass_row.user_state_code
-
+		if (len(user_output._current_rows) > 0):
+			# cass_row              = user_output[0]  ### index based row fetching is deprecated in Python 4.x
+			cass_row              = user_output.one()
+			var_user_id           = cass_row.user_id
+			var_user_email_id     = cass_row.user_email_id
+			var_user_name         = cass_row.user_name
+			var_user_phone_number = cass_row.user_phone_number
+			var_user_platform     = cass_row.user_platform
+			var_user_state_code   = cass_row.user_state_code
+		else:
+			print("ERROR: looks like users data is missing in the database. use 'SalesApp_GenerateUsers.py' to generated users data.")
 
 		### setup order info
 		var_order_date                          = datetime.date(datetime.now())
@@ -77,14 +79,17 @@ try:
 			### pick a product
 			cql_stmt                   = cql_product_stmt.bind([random.randint(1, var_products_count)])
 			product_output             = cc.cass_session.execute(cql_stmt)
-			# cass_row                   = product_output[0]
-			cass_row                   = product_output.one()
-			var_product_id             = cass_row.product_id
-			var_product_category       = cass_row.product_category
-			var_product_code           = cass_row.product_code
-			var_product_name           = cass_row.product_name
-			var_product_price          = cass_row.product_price
-			var_product_qoh            = cass_row.product_qoh
+			if (len(product_output._current_rows) > 0):
+				# cass_row                   = product_output[0]
+				cass_row                   = product_output.one()
+				var_product_id             = cass_row.product_id
+				var_product_category       = cass_row.product_category
+				var_product_code           = cass_row.product_code
+				var_product_name           = cass_row.product_name
+				var_product_price          = cass_row.product_price
+				var_product_qoh            = cass_row.product_qoh
+			else:
+				print("ERROR: looks like products data is missing in the database. use 'SalesApp_GenerateProducts.py' to generated products data.")
 			var_product_sold_quantity  = random.randint(3, 15)
 			var_product_price_total    = (var_product_price * var_product_sold_quantity)
 
