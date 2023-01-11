@@ -13,7 +13,7 @@ CASS_USERNAME          = "sales_user" ;
 CASS_PASSWORD          = "PassCode" ;
 
 ### connection variables for AstraDB
-# AstraDB Portal -> Dashboard -> Serverless Databases -> Connect -> Drivers -> Legacy -> Python -> download Secure Connect Bundle
+# AstraDB Portal -> Dashboard -> Serverless Databases -> Connect -> Drivers -> Native -> Python -> download Secure Connect Bundle
 ASTRADB_CLOUD_CONFIG   = { 'secure_connect_bundle': '/apps/opt/cassandra/pyAstra/secure-connect-oramad-db.zip' }
 # AstraDB Portal -> Organization Settings -> Token Management -> Read/Write Service Account -> Generate a New Token -> Download Token Details
 ASTRADB_CLIENT_ID      = "OramaDL0vesPlayStati0n"
