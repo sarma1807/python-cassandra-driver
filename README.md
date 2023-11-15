@@ -8,13 +8,13 @@
 ### Latest Verification
 
 ```
-# 22-October-2022
+# 15-Nov-2023
 # this is working properly with following software versions :
 
-Linux OS : CentOS Linux release 7.9.2009 (Core) & CentOS Stream release 9 (5.14.0-171.el9.x86_64)
+Linux OS : CentOS 7.9.2009 (Core) / CentOS Stream 9 / Rocky Linux 9.2
 Python version 3.6.8+
-python cassandra-driver 3.25.0
-Apache Cassandra 3.11.x / 4.x / including 4.1-beta1
+python cassandra-driver 3.25.0+
+Apache Cassandra 3.11.x / 4.x / 5.x / including 5.0-alpha2
 DataStax Enterprise 6.8.x
 AstraDB
 ```
@@ -24,3 +24,4 @@ AstraDB
 ---
 
 #### https://www.youtube.com/watch?v=c34JLr5UNKE
+
