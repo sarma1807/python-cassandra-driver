@@ -108,7 +108,7 @@ CREATE TABLE sales.sales_order_products
     PRIMARY KEY ((order_date, order_code), product_id)
 ) WITH CLUSTERING ORDER BY (product_id ASC) ;
 
-    
+
 
 -------------------------------------------------------
 -- transaction tables TIME_TO_LIVE (TTL)
@@ -124,4 +124,39 @@ CREATE TABLE sales.sales_order_products
 ALTER TABLE sales.sales_orders WITH default_time_to_live = 1296000 ;
 
 ALTER TABLE sales.sales_order_products WITH default_time_to_live = 1296000 ;
+
+
+
+-------------------------------------------------------
+-- tables for metrics & analytics (data will be generated via python code)
+-------------------------------------------------------
+
+-- create sales_orders_hourly_summary table. hourly partition : 1 entry per order.
+CREATE TABLE sales.sales_orders_hourly_summary 
+(
+    order_date                      date,
+    order_date_hour                 int,
+    order_code                      uuid,
+    order_grand_total               decimal,
+    user_platform                   text,
+    user_state_code                 text,
+    PRIMARY KEY ((order_date, order_date_hour), order_code)
+) WITH CLUSTERING ORDER BY (order_code ASC)
+AND compaction = {'class': 'org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy', 'compaction_window_size': '1', 'compaction_window_unit': 'HOURS'}
+;
+
+-- create sales_orders_daily_summary table. daily partition : 1 entry per order.
+CREATE TABLE sales.sales_orders_daily_summary 
+(
+    order_date                      date,
+    order_code                      uuid,
+    order_grand_total               decimal,
+    user_platform                   text,
+    user_state_code                 text,
+    PRIMARY KEY ((order_date), order_code)
+) WITH CLUSTERING ORDER BY (order_code ASC)
+AND compaction = {'class': 'org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy', 'compaction_window_size': '1', 'compaction_window_unit': 'DAYS'}
+;
+
+-------------------------------------------------------
 

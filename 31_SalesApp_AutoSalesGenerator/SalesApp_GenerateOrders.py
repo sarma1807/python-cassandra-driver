@@ -43,6 +43,11 @@ try:
 	cql_product_qoh_insert = cc.cass_session.prepare("INSERT INTO products (product_id, product_qoh) VALUES (?, ?)")
 	cql_product_qoh_insert.consistency_level = CASS_WRITE_CONSISTENCY
 
+	cql_order_insert_hourly_summary = cc.cass_session.prepare("INSERT INTO sales_orders_hourly_summary (order_date, order_date_hour, order_code, order_grand_total, user_platform, user_state_code) VALUES (?, ?, ?, ?, ?, ?)")
+	cql_order_insert_hourly_summary.consistency_level = CASS_WRITE_CONSISTENCY
+
+	cql_order_insert_daily_summary = cc.cass_session.prepare("INSERT INTO sales_orders_daily_summary (order_date, order_code, order_grand_total, user_platform, user_state_code) VALUES (?, ?, ?, ?, ?)")
+	cql_order_insert_daily_summary.consistency_level = CASS_WRITE_CONSISTENCY
 
 	### generate orders using for loop - start
 	for var_orders in range(1, random.randint(5, v_max_orders)):
@@ -107,6 +112,8 @@ try:
 		### save orders in db only if any products were sold
 		if ( var_order_number_of_products > 0 ):
 			cc.cass_session.execute(cql_order_insert, (var_order_date, var_order_date_hour, var_order_timestamp, var_order_code, var_order_discount_percent, var_order_estimated_shipping_date, var_order_grand_total, var_order_number_of_products, var_order_total, var_user_email_id, var_user_id, var_user_name, var_user_phone_number, var_user_platform, var_user_state_code))
+			cc.cass_session.execute(cql_order_insert_hourly_summary, (var_order_date, var_order_date_hour, var_order_code, var_order_grand_total, var_user_platform, var_user_state_code))
+			cc.cass_session.execute(cql_order_insert_daily_summary,  (var_order_date, var_order_code, var_order_grand_total, var_user_platform, var_user_state_code))
 			v_number_of_orders = v_number_of_orders + 1
 
 	### generate orders using for loop - end
