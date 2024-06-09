@@ -13,7 +13,7 @@
 
 Linux OS : Rocky Linux 9.4
 Python version 3.9.18
-Pip version 21.2.3
+Python pip version 21.2.3
 python cassandra-driver 3.29.1
 Apache Cassandra 3.11.x / 4.x / 5.x / including 5.0-beta1
 DataStax Enterprise 6.8.x
