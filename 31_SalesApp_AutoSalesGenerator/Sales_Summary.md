@@ -1,52 +1,23 @@
-### 2 sales summary tables exist
+### 2 sales summary tables
 
-`sales_orders_hourly_summary` &  `sales_orders_daily_summary`
-
-
-
-
-
-
-
-
-
-
-
-
+` sales_orders_hourly_summary ` &  ` sales_orders_daily_summary `
 
 ---
 
-#### Configure Cassandra Cluster Connection
+## sales_orders_hourly_summary table
 
-`cassConnectionManager.py` Python program to configure connection to Cassandra Cluster.
-
----
-
-#### Apache Cassandra CQL Commands
-
-`01_cassandra_sales_keyspace.cql` Apache Cassandra CQL commands to create sales keyspace.
-
-`02_sales_create_tables.cql` Apache Cassandra CQL commands to create tables in sales keyspace.
-
-`03_load_data_in_lookup_tables.cql` Apache Cassandra CQL insert data into lookup tables in sales keyspace.
+```
+TABLE sales_orders_hourly_summary
+  PRIMARY KEY ((order_date, order_date_hour), order_code)
+```
 
 ---
 
-#### SalesApp Python code written to use python cassandra-driver.
+## sales_orders_daily_summary table
 
-`SalesApp_GenerateUsers.py` Generates Users. Typically executed only 1 time during initial setup.
-
-`SalesApp_GenerateProducts.py` Generates Products. Typically executed only 1 time during initial setup.
-
-`SalesApp_GenerateOrders.py` Generates Orders. Execute it whenever you want to generate Orders or automate the execution using cron.
-
----
-
-#### crontab
-
-`crontab_for_auto_order_generation.md` crontab entries to automatically generate Orders.
+```
+TABLE sales_orders_daily_summary
+  PRIMARY KEY (order_date, order_code)
+```
 
 ---
-
-NOTE : PYTHON CODE IS WRITTEN FOR DEMONSTRATION PURPOSES ONLY. IT IS NOT OPTIMIZED, NOR WRITTEN BY A PROFESSIONAL PYTHON PROGRAMMER.
-
